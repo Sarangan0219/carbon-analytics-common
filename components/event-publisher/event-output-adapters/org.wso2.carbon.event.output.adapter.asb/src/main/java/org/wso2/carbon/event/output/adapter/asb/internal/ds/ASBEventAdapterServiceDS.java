@@ -11,9 +11,8 @@ import org.wso2.carbon.event.output.adapter.core.OutputEventAdapterFactory;
 @Component(
         name = "output.asb.AdapterService.component",
         immediate = true)
-public class ESBEventAdapterServiceDS {
-
-    private static final Log log = LogFactory.getLog(ESBEventAdapterServiceDS.class);
+public class ASBEventAdapterServiceDS {
+    private static final Log log = LogFactory.getLog(ASBEventAdapterServiceDS.class);
 
     @Activate
     protected void activate(ComponentContext context) {
