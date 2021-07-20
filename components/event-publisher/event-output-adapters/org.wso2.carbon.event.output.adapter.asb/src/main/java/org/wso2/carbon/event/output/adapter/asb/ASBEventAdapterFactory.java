@@ -6,9 +6,7 @@ import org.wso2.carbon.event.output.adapter.asb.internal.util.ASBEventAdapterCon
 import org.wso2.carbon.event.output.adapter.core.*;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -16,11 +14,11 @@ import java.util.Map;
  */
 public class ASBEventAdapterFactory extends OutputEventAdapterFactory {
 
-    private static final Log log = LogFactory.getLog(ASBEventAdapterFactory.class);
+    private ResourceBundle resourceBundle = ResourceBundle.getBundle("org.wso2.carbon.event.output.adapter.asb.i18n.Resources", Locale.getDefault());
 
     @Override
     public String getType() {
-        return ASBEventAdapterConstants.ADAPTER_TYPE_ASB;
+        return ASBEventAdapterConstants.ADAPTER_TYPE_AMQP;
     }
 
     @Override
@@ -35,7 +33,28 @@ public class ASBEventAdapterFactory extends OutputEventAdapterFactory {
 
     @Override
     public List<Property> getStaticPropertyList() {
-        return null;
+        List<Property> propertyList = new ArrayList<Property>();
+
+        Property connectionStringProperty = new Property(ASBEventAdapterConstants.ADAPTER_ASB_CONNECTION_STRING);
+        connectionStringProperty.setDisplayName(
+                resourceBundle.getString(ASBEventAdapterConstants.ADAPTER_ASB_CONNECTION_STRING));
+        propertyList.add(connectionStringProperty);
+
+        Property destinationTypeProperty = new Property(ASBEventAdapterConstants.ADAPTER_ASB_DESTINATION_TYPE);
+        destinationTypeProperty.setRequired(true);
+        destinationTypeProperty.setDisplayName(
+                resourceBundle.getString(ASBEventAdapterConstants.ADAPTER_ASB_DESTINATION_TYPE));
+        destinationTypeProperty.setOptions(new String[]{"queue", "topic"});
+        destinationTypeProperty.setDefaultValue("topic");
+        propertyList.add(destinationTypeProperty);
+
+        Property topicProperty = new Property(ASBEventAdapterConstants.ADAPTER_ASB_DESTINATION);
+        topicProperty.setDisplayName(
+                resourceBundle.getString(ASBEventAdapterConstants.ADAPTER_ASB_DESTINATION));
+        topicProperty.setRequired(true);
+        propertyList.add(topicProperty);
+
+        return propertyList;
     }
 
     @Override

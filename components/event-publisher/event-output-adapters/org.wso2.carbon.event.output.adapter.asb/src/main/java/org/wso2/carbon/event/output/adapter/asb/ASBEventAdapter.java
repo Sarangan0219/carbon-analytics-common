@@ -144,6 +144,7 @@ public class ASBEventAdapter implements OutputEventAdapter {
     @Override
     public void connect() throws ConnectionUnavailableException {
 
+
     }
 
     @Override

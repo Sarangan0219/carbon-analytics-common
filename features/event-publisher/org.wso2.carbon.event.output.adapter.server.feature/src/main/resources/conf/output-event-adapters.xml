@@ -22,6 +22,15 @@
         <property key="default.binary.ssl.url">ssl://localhost:9712</property>
     </adapterConfig>
 
+    <adapterConfig type="asb">
+        <!-- Thread Pool Related Properties -->
+        <property key="minThread">8</property>
+        <property key="maxThread">100</property>
+        <property key="keepAliveTimeInMillis">20000</property>
+        <property key="jobQueueSize">10000</property>
+        <property key="connectionKeepAliveInterval">60</property>
+    </adapterConfig>
+
     <adapterConfig type="rdbms">
         <property key="string">VARCHAR(255)</property>
         <property key="double">DOUBLE</property>
